@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Random Color</title>
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			.container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			button {
+				font-weight: bold;
+				font-size: 5vw;
+				border-radius: 30px;
+				padding: 30px;
+				border: none;
+				cursor: pointer;
+				outline: 0;
+			}
+			.colors {
+				margin-top: 10px;
+				margin-left: 5px;
+				display: inline-block;
+				padding: 15px;
+				border-radius: 5px;
+			}
+			input[type="button"] {
+				outline: none !important;
+				box-shadow: none !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<button>RANDOM COLOR</button>
+		</div>
+		<script>
+			window.onload = updateColor;
+
+			const hexChars = [
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				0,
+				"A",
+				"B",
+				"C",
+				"D",
+				"E",
+				"F",
+			];
+
+			document.querySelector("button").addEventListener("click", updateColor);
+
+			function updateColor() {
+				let hex = "#";
+				for (i = 0; i < 6; i++) {
+					hex += hexChars[generateRandomHex()];
+				}
+				document.body.style.backgroundColor = hex;
+
+				var div = document.createElement("span"); // Create a <div> element
+				div.innerHTML = hex; // Insert text
+				div.style.backgroundColor = hex; // add background
+				div.classList.add("colors"); // add "colors" class
+				document.body.appendChild(div); // Append <div> to <body>
+				document.title = hex;
+				console.log(hex);
+			}
+
+			function generateRandomHex() {
+				return Math.floor(Math.random() * hexChars.length);
+			}
+		</script>
+	</body>
+</html>
